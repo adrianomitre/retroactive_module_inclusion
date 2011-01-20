@@ -2,7 +2,23 @@ class Module
 
   private
 
-  def retroactively_include(mod)
+  # Includes +mod+ retroactively, i.e., extending to all classes and modules which
+  # included +self+ _beforehand_.
+  #
+  # Example:
+  #
+  #   module Stats
+  #     def mean
+  #       n = 1
+  #       inject {|s,k| n += 1 ; s + k }.to_f / count
+  #     end
+  #   end
+  #
+  #   Enumerable.module_eval { retroactively_include Stats }
+  #
+  #   (1..2).mean  #=>  1.5
+  #
+  def retroactively_include(mod) # :doc:
     raise TypeError, 'wrong argument type #{mod.class} (expected Module)' unless mod.is_a? Module
 
     # Although one would expect +A.module_eval("include B")+ to make methods
