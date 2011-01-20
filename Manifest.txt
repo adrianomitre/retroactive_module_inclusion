@@ -3,6 +3,5 @@ History.rdoc
 Manifest.txt
 README.rdoc
 Rakefile
-bin/retroactive_module_inclusion
 lib/retroactive_module_inclusion.rb
 test/test_retroactive_module_inclusion.rb
