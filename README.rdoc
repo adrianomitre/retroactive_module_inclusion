@@ -13,8 +13,8 @@ behaviour hurts the least surprise principle, specially because if K is a
 class, then
   K.class_eval { include M }
 _does_ make all methods of M available to all classes which had previously
-inherited it. This inconsistency stems from implementation efficienty concerns
-and characterize a limitation in Ruby's object model (see {Dynamic Module Include Problem}[http://eigenclass.org/hiki/The+double+inclusion+problem]).
+inherited it. This inconsistency stems from efficienty concerns and characterize
+a limitation in Ruby's object model (see {Dynamic Module Include Problem}[http://eigenclass.org/hiki/The+double+inclusion+problem]).
 
 == AN EXAMPLE OF THE "DYNAMIC MODULE INCLUDE" PROBLEM
 
@@ -22,8 +22,7 @@ Let's begin by defining a one-method module:
 
   module Stats
     def mean
-      n = 1
-      inject {|s,k| n += 1 ; s + k }.to_f / count
+      inject(&:+) / count.to_f
     end
   end
 
