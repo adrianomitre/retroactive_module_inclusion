@@ -1,3 +1,9 @@
+=== 1.0.3 / 2011-01-20
+
+* 1 minor enhancement
+
+  * more concise Stats implementation, minor gem description and doc improvements
+
 === 1.0.1 / 2011-01-20
 
 * 1 minor enhancement
