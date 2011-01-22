@@ -67,7 +67,7 @@ The second, more concise and elegant, is to use this gem
 == SYNOPSIS:
 
   SomeModule.module_eval { retroactively_include AnotherModule }
-  
+
 or equivalently
 
   SomeModule.send :retroactively_include, AnotherModule
