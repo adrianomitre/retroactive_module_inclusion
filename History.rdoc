@@ -3,7 +3,7 @@
 * 2 minor enhancements
 
   * Refactored retroactively_include method from ::Module to
-    CoreExt::Module::RetroactiveModuleInclusion, after Ola Bini suggested
+    CoreExt::Module::RetroactiveModuleInclusion, after what Ola Bini suggested
     in his post {SAFE(R) MONKEY PATCHING}[http://olabini.com/blog/2011/01/safeer-monkey-patching/]
 
   * Finally, managed to make yard document the retroactively_include method:
