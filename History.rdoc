@@ -1,3 +1,13 @@
+=== 1.1.0 / 2011-01-22
+
+* 2 minor enhancements
+
+  * refactored retroactively_include into CoreExt::Module::RetroactiveModuleInclusion
+
+  * now even yard documents retroactively_include (.yardopts had to be created,
+    as yard it ignores rdoc directives
+
+
 === 1.0.3 / 2011-01-20
 
 * 1 minor enhancement
