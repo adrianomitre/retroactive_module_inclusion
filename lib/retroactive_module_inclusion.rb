@@ -3,7 +3,7 @@ class Module
   private
 
   # Includes +mod+ retroactively, i.e., extending to all classes and modules which
-  # included +self+ _beforehand_.
+  # had included +self+ _beforehand_.
   #
   # Example:
   #
