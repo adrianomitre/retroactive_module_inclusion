@@ -21,7 +21,7 @@ module CoreExt
       #   (1..2).mean  #=>  1.5
       #
       def retroactively_include(mod) # :doc:
-        raise TypeError, "wrong argument type #{mod.class} (expected Module)" unless mod.is_a? Object::Module
+        raise TypeError, "wrong argument type #{mod.class} (expected Module)" unless mod.is_a? ::Module # ::Module would be equivalent to Object::Module and simply Module would mean CoreExt::Module in this context
 
         # Although one would expect +A.module_eval("include B")+ to make methods
         # from module +B+ available to all classes and modules that had previously
@@ -43,7 +43,7 @@ module CoreExt
           prev_jruby_objectspace_state = JRuby.objectspace
           JRuby.objectspace = true
         end
-        ObjectSpace.each_object(Object::Module) do |m|
+        ObjectSpace.each_object(::Module) do |m|
           if m <= self # equiv. to "if m.include?(self) || m == self"
             m.module_eval { include mod }
           end
@@ -53,7 +53,7 @@ module CoreExt
         end
       end
       
-      Object::Module.class_eval { include CoreExt::Module::RetroactiveModuleInclusion }
+      ::Module.class_eval { include CoreExt::Module::RetroactiveModuleInclusion }
   
     end
   end
