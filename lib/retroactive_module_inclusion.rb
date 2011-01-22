@@ -20,7 +20,7 @@ module CoreExt
       #   (1..2).mean  #=>  1.5
       #
       def retroactively_include(mod) # :doc:
-        raise TypeError, "wrong argument type #{mod.class} (expected Module)" unless mod.is_a? ::Module # ::Module would be equivalent to Object::Module and simply Module would mean CoreExt::Module in this context
+        raise TypeError, "wrong argument type #{mod.class} (expected Module)" unless mod.is_a? ::Module # ::Module would in general be equivalent to Object::Module and simply Module would mean CoreExt::Module in this context
 
         # Although one would expect +A.module_eval("include B")+ to make methods
         # from module +B+ available to all classes and modules that had previously
