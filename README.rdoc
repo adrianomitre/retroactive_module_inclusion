@@ -57,7 +57,7 @@ The second, more concise and elegant, is to use this gem
 
 == FEATURES/PROBLEMS:
 
-* Tested on all major Ruby interpreters (100% coverage, 0% failures):
+* Tested on all major Ruby interpreters (100% coverage, 0% failure):
   * ruby-1.9.2-p136
   * ruby-1.8.7-p330
   * ree-1.8.7-2010.02
