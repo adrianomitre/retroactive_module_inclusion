@@ -2,17 +2,17 @@
 
 * 2 minor enhancements
 
-  * refactored retroactively_include into CoreExt::Module::RetroactiveModuleInclusion
+  * Refactored retroactively_include into CoreExt::Module::RetroactiveModuleInclusion
 
-  * now even yard documents retroactively_include (.yardopts had to be created,
-    as yard it ignores rdoc directives
-
+  * Finally, managed to make yard document the retroactively_include method
+    * .yardopts had to be created to add the '--private' argument, because
+      yard ignores the rdoc document modifiers :doc: and :nodoc:
 
 === 1.0.3 / 2011-01-20
 
 * 1 minor enhancement
 
-  * more concise Stats implementation, minor gem description and doc improvements
+  * More concise Stats implementation, minor gem description and doc improvements
 
 === 1.0.1 / 2011-01-20
 
