@@ -11,8 +11,7 @@ module CoreExt
       #
       #   module Stats
       #     def mean
-      #       n = 1
-      #       inject {|s,k| n += 1 ; s + k }.to_f / count
+      #       inject(&:+) / count.to_f
       #     end
       #   end
       #
