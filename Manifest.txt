@@ -1,4 +1,5 @@
 .autotest
+.yardopts
 History.rdoc
 Manifest.txt
 README.rdoc
