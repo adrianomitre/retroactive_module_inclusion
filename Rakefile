@@ -33,3 +33,24 @@ task :tests => [:test] do
   # aliasing :test with :tests for RVM ('rvm tests')
 end
 
+module CoreExt
+  module String
+    module FromHere
+      def from_here
+        unless Dir.pwd != File.dirname(File.expand_path(__FILE__))
+          self
+        else
+          File.expand_path("../#{self}", __FILE__)
+        end
+      end
+    end
+  end
+end
+
+String.class_eval { include CoreExt::String::FromHere }
+
+task :clean_all => [:clean] do
+  %w{ .yardoc }.each do |rel_path|
+    rm_r rel_path.from_here if File.exist?(rel_path.from_here)
+  end
+end
