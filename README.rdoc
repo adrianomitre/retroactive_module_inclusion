@@ -39,7 +39,7 @@ included Enumerable (e.g., the Range class). Unfortunately, this is not the case
   (1..2).mean  #=>  NoMethodError: undefined method `mean' for 1..2:Range
 
 Surely this behaviour does not conform to the least surprise principle.
-In fact, this inconsistency stems from implementation efficienty concerns
+In fact, this inconsistency stems from efficienty concerns
 and characterize a limitation in Ruby's object model (see {Dynamic Module Include Problem}[http://eigenclass.org/hiki/The+double+inclusion+problem]).
 
 In face of that, one has basically two possible solutions. The first is to give up Stats and define the method directly inside Enumerable
@@ -69,6 +69,10 @@ The second, more concise and elegant, is to use this gem
   SomeModule.module_eval { retroactively_include AnotherModule }
   
 or equivalently
+
+  SomeModule.send :retroactively_include, AnotherModule
+
+or still
 
   module SomeModule
     retroactively_include AnotherModule
