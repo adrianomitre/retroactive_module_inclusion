@@ -55,7 +55,7 @@ The second, more concise and elegant, is to use this gem
 
   Enumerable.module_eval { retroactively_include Stats }
 
-== FEATURES/PROBLEMS:
+== FEATURES:
 
 * Tested on all major Ruby interpreters (100% coverage, 0% failure):
   * ruby-1.9.2-p136
