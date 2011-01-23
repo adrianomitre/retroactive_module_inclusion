@@ -2,8 +2,6 @@ module CoreExt
   module Module
     module RetroactiveModuleInclusion
 
-      private
-
       # Includes +mod+ retroactively, i.e., extending to all classes and modules which
       # had included +self+ _beforehand_.
       #

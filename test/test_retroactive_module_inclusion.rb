@@ -1,10 +1,14 @@
 require "test/unit"
 require File.expand_path("../../lib/retroactive_module_inclusion", __FILE__)
 
-module Stats
-  def mean
-    inject(&:+) / count.to_f
-  end
+[1,2].each do |n|
+  eval <<-EOS
+    module Stats#{n}
+      def mean#{n}
+        inject(&:+) / count.to_f
+      end
+    end
+  EOS
 end
 
 class TestRetroactiveInclude < Test::Unit::TestCase
@@ -18,13 +22,22 @@ class TestRetroactiveInclude < Test::Unit::TestCase
     type_ok(Numeric, Math)
   end
   
-  def test_retroactively_include
-    assert_raise(NoMethodError) { (1..2).mean }
-    Enumerable.module_eval { include Stats }
-    assert_raise(NoMethodError, 'include should not work retroactively ') { (1..2).mean }
-    Enumerable.module_eval { retroactively_include Stats }
-    assert_nothing_raised('retroactively_include should do the job') { (1..2).mean }
-    assert_equal 1.5, (1..2).mean
+  def test_retroactively_include_private
+    assert_raise(NoMethodError) { (1..2).mean1 }
+    Enumerable.module_eval { include Stats1 }
+    assert_raise(NoMethodError, 'include should not work retroactively ') { (1..2).mean1 }
+    Enumerable.module_eval { retroactively_include Stats1 }
+    assert_nothing_raised('retroactively_include should do the job') { (1..2).mean1 }
+    assert_equal 1.5, (1..2).mean1
+  end
+  
+  def test_retroactively_include_public
+    assert_raise(NoMethodError) { (1..2).mean2 }
+    Enumerable.module_eval { include Stats2 }
+    assert_raise(NoMethodError, 'include should not work retroactively ') { (1..2).mean2 }
+    Enumerable.module_eval { retroactively_include Stats2 }
+    assert_nothing_raised('retroactively_include should do the job') { (1..2).mean2 }
+    assert_equal 1.5, (1..2).mean2
   end
   
   def test_jruby_object_space_prev_state
