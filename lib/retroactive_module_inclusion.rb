@@ -5,7 +5,7 @@ module CoreExt
       # Includes +mod+ retroactively, i.e., extending to all classes and modules which
       # had included +self+ _beforehand_.
       #
-      # Example:
+      # @example Retroactively include a module in Enumerable.
       #
       #   module Stats
       #     def mean
@@ -17,17 +17,23 @@ module CoreExt
       #
       #   (1..2).mean  #=>  1.5
       #
-      def retroactively_include(mod) # :doc:
+      # @return self
+      #
+      def retroactively_include(mod)
         raise TypeError, "wrong argument type #{mod.class} (expected Module)" unless mod.is_a? ::Module # ::Module would in general be equivalent to Object::Module and simply Module would mean CoreExt::Module in this context
-
-        # Although one would expect +A.module_eval("include B")+ to make methods
-        # from module +B+ available to all classes and modules that had previously
-        # included module +A+, this is not the case due to a limitation in Ruby's
-        # object model (see [dynamic module include problem][1]). Thus, one has two
-        # possible solutions:
-        #   * use Module#include_retroactively instead of Module#include
-        #   * reopen +A+ and define the methods directly inside it
-        #
+        
+        pseudo_descendants.each do |pd|
+          pd.module_eval { include mod }
+        end
+        
+        self
+      end
+      
+      private
+      
+      # @return [Array] All modules and classes which have self in its ancestors tree, including self itself.
+      #
+      def pseudo_descendants
         # JRuby (at least up to version 1.5.6) has ObjectSpace disabled by default,
         # thus it must be enabled manually ([reference][2]).
         #
@@ -40,14 +46,16 @@ module CoreExt
           prev_jruby_objectspace_state = JRuby.objectspace
           JRuby.objectspace = true
         end
+        result = []
         ObjectSpace.each_object(::Module) do |m|
           if m <= self # equiv. to "if m.include?(self) || m == self"
-            m.module_eval { include mod }
+            result << m
           end
         end
         if defined?(RUBY_DESCRIPTION) && RUBY_DESCRIPTION =~ /jruby/i
           JRuby.objectspace = prev_jruby_objectspace_state
         end
+        result
       end
       
       ::Module.class_eval { include CoreExt::Module::RetroactiveModuleInclusion }
