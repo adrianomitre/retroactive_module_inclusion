@@ -27,6 +27,17 @@ class TestRetroactiveInclude < Test::Unit::TestCase
     assert_equal 1.5, (1..2).mean
   end
   
+  def test_jruby_object_space_prev_state
+    if defined?(RUBY_DESCRIPTION) && RUBY_DESCRIPTION =~ /jruby/i
+      require 'jruby'
+      [true, false].each do |prev_state|
+        JRuby.objectspace = prev_state
+        Enumerable.module_eval { include Stats1 }
+        assert_equal prev_state, JRuby.objectspace
+      end
+    end
+  end
+  
   private
   
   def type_error(a, b)
