@@ -31,27 +31,21 @@ module CoreExt
       
       private
       
-      # @return [Array] All modules and classes which have self in its ancestors tree, including self itself.
+      # @return [Array] All modules and classes which have self in its
+      #                 ancestors tree, including self itself.
+      #
+      # JRuby (at least up to version 1.5.6) has ObjectSpace disabled by
+      # default, thus it might have to be temporarily enabled and then
+      # restored. Reference: {ObjectSpace: to have or not to have}[http://ola-bini.blogspot.com/2007/07/objectspace-to-have-or-not-to-have.html].
       #
       def pseudo_descendants
-        # JRuby (at least up to version 1.5.6) has ObjectSpace disabled by default,
-        # thus it must be enabled manually ([reference][2]).
-        #
-        # [1]: http://eigenclass.org/hiki/The+double+inclusion+problem                      "Dynamic Module Include Problem"
-        # [2]: http://ola-bini.blogspot.com/2007/07/objectspace-to-have-or-not-to-have.html "ObjectSpace: to have or not to have"
-        #
         prev_jruby_objectspace_state = nil # only for scope reasons
         if defined?(RUBY_DESCRIPTION) && RUBY_DESCRIPTION =~ /jruby/i
           require 'jruby'
           prev_jruby_objectspace_state = JRuby.objectspace
           JRuby.objectspace = true
         end
-        result = []
-        ObjectSpace.each_object(::Module) do |m|
-          if m <= self # equiv. to "if m.include?(self) || m == self"
-            result << m
-          end
-        end
+        result = ObjectSpace.each_object(::Module).select {|m| m <= self } # equiv. to "m.include?(self) || m == self"
         if defined?(RUBY_DESCRIPTION) && RUBY_DESCRIPTION =~ /jruby/i
           JRuby.objectspace = prev_jruby_objectspace_state
         end
