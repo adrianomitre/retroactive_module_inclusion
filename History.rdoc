@@ -1,3 +1,9 @@
+=== 1.2.4 / 2011-01-24
+
+* 1 minor enhancements
+
+  * some refactoring and small changes in doc comments
+
 === 1.2.3 / 2011-01-24
 
 * 1 minor enhancements
