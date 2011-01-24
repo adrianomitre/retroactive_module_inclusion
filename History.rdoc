@@ -1,3 +1,9 @@
+=== 1.2.1 / 2011-01-23
+
+* 1 minor enhancements
+
+  * fixed a typo in History.rdoc
+
 === 1.2.0 / 2011-01-23
 
 * 2 minor enhancements
