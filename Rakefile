@@ -8,7 +8,7 @@ require 'hoe'
 Hoe.spec 'retroactive_module_inclusion' do
   developer('Adriano Mitre', 'adriano.mitre@gmail.com')
   
-  self.version = '1.2.1'
+  self.version = '1.2.2'
 
   self.readme_file = 'README.rdoc'
   self.history_file = 'History.rdoc'

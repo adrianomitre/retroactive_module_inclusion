@@ -77,13 +77,17 @@ to the same effect.
 
 == SYNOPSIS:
 
+  SomeModule.retroactively_include AnotherModule
+
+or, as in prior versions,
+
   SomeModule.module_eval { retroactively_include AnotherModule }
 
 or equivalently
 
   SomeModule.send :retroactively_include, AnotherModule
 
-or still
+and also
 
   module SomeModule
     retroactively_include AnotherModule
