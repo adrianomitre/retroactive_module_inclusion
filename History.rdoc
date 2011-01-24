@@ -1,8 +1,14 @@
+=== 1.2.3 / 2011-01-24
+
+* 1 minor enhancements
+
+  * updated Example section in README
+
 === 1.2.2 / 2011-01-24
 
 * 1 minor enhancements
 
-  * updated synopsis section in README
+  * updated Synopsis section in README
 
 === 1.2.1 / 2011-01-23
 

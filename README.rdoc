@@ -46,8 +46,7 @@ In face of that, one has basically two possible solutions. The first is to give 
 
   module Enumerable
     def mean
-      n = 1
-      inject {|s,k| n += 1 ; s + k }.to_f / count
+      inject(&:+) / count.to_f
     end
   end
 
