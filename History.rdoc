@@ -1,3 +1,14 @@
+=== 1.2.0 / 2011-01-23
+
+* 2 minor enhancements
+
+  * Chaged #retroactively_include visibility to public and updated tests accordingly
+    * motivated by this discussion {this discussion}[https://github.com/lsegal/yard/issues/issue/242/] with Loren Segal
+
+  * Better documentation:
+    * many README and History fixes and improvements
+    * code documentation enhanced with YARD tags
+
 === 1.1.0 / 2011-01-22
 
 * 2 minor enhancements

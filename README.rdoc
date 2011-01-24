@@ -53,7 +53,18 @@ In face of that, one has basically two possible solutions. The first is to give 
 
 The second, more concise and elegant, is to use this gem
 
+  Enumerable.retroactively_include Stats
+
+Note that the method retroactively_include, which was private in early
+versions, became public in v1.2.0. Nevertheless, one can still call
+
   Enumerable.module_eval { retroactively_include Stats }
+
+or
+
+  Enumerable.send :retroactively_include, Stats
+
+to the same effect.
 
 == FEATURES:
 
