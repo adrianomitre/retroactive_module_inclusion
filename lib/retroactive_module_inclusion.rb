@@ -13,7 +13,7 @@ module CoreExt
       #     end
       #   end
       #
-      #   Enumerable.module_eval { retroactively_include Stats }
+      #   Enumerable.retroactively_include Stats
       #
       #   (1..2).mean  #=>  1.5
       #
