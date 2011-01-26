@@ -1,3 +1,9 @@
+=== 1.2.5 / 2011-01-26
+
+* 1 minor enhancements
+
+  * changed example in doc comment to reflect that #retroactively_include is public (since v.1.2.0)
+
 === 1.2.4 / 2011-01-24
 
 * 1 minor enhancements
